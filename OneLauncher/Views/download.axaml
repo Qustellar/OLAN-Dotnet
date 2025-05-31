@@ -1,0 +1,50 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d" d:DesignWidth="818" d:DesignHeight="530"
+             x:Class="OneLauncher.Views.download">
+	<SplitView IsPaneOpen="{Binding IsPaneShow,Mode=TwoWay}"
+               DisplayMode="Overlay"
+               OpenPaneLength="650"
+               PanePlacement="Right">
+		<SplitView.Pane>
+			<TransitioningContentControl
+					Content="{Binding DownloadPaneContent}">
+			</TransitioningContentControl>
+		</SplitView.Pane>
+		<!-- 版本列表 -->
+		<ScrollViewer>
+			<StackPanel 
+						Margin="48"
+						HorizontalAlignment="Left"
+						VerticalAlignment="Center"
+						Spacing="4"
+						IsEnabled="{Binding IsAllowDownloading}">
+				<TextBlock FontSize="42" Text="选择下载版本"/>
+				<AutoCompleteBox
+					Watermark="搜索版本..."
+					Width="300"
+					CornerRadius="6"
+					ItemsSource="{Binding AutoVersionList}"
+					SelectedItem="{Binding SelectedItem}">
+					<AutoCompleteBox.ItemTemplate>
+						<DataTemplate>
+							<TextBlock Text="{Binding ID}"/>
+						</DataTemplate>
+					</AutoCompleteBox.ItemTemplate>
+				</AutoCompleteBox>
+				<ListBox ItemsSource="{Binding ReleaseItems}" MaxHeight="350" >
+					<ListBox.ItemTemplate>
+						<DataTemplate>
+							<Grid ColumnDefinitions="*,Auto" >
+								<TextBlock Text="{Binding ID}" Grid.Column="0"/>
+								<Button Grid.Column="1" Margin="8,0,8,0" HorizontalAlignment="Right" Content="下载" Command="{Binding $parent[ListBox].DataContext.ToDownloadCommand}" CommandParameter="{Binding}"/>
+							</Grid>
+						</DataTemplate>
+					</ListBox.ItemTemplate>
+				</ListBox>
+			</StackPanel>
+		</ScrollViewer>
+	</SplitView>
+</UserControl>

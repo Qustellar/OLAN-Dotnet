@@ -1,0 +1,21 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup>
+		<TargetFramework>net9.0</TargetFramework>
+		<ImplicitUsings>enable</ImplicitUsings>
+		<Nullable>enable</Nullable>
+	</PropertyGroup>
+	<PropertyGroup Condition="'$(RuntimeIdentifier)' == 'win-x64'">
+		<DefineConstants>$(DefineConstants);WINDOWS</DefineConstants>
+	</PropertyGroup>
+	<PropertyGroup Condition="'$(RuntimeIdentifier)' == 'osx-arm64'">
+		<DefineConstants>$(DefineConstants);MACOS</DefineConstants>
+	</PropertyGroup>
+	<PropertyGroup Condition="'$(RuntimeIdentifier)' == 'linux-x64'">
+		<DefineConstants>$(DefineConstants);LINUX</DefineConstants>
+	</PropertyGroup>
+	<Import Project="..\OneLauncher.Core.Net\OneLauncher.Core.Net.projitems" Label="Shared" />
+	<ItemGroup>
+	  <PackageReference Include="SixLabors.ImageSharp" Version="3.1.8" />
+	</ItemGroup>
+</Project>
