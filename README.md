@@ -1,4 +1,4 @@
-# One Launcher .Net版本
+# One Launcher 社区版
 **OneLauncher** 是一个以快速为功能核心的轻量化 Minecraft 启动器
 
 项目转自 [这里](https://github.com/abbcccbba/OneLauncher)
